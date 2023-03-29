@@ -6,9 +6,12 @@ import string
 from regex import search
 
 def remove_formatting(text):
+    removal_list = ['\u00AD', '\u00A0']
     if text is None:
         return None
-    return text.replace('\u00AD', '')
+    for removable_str in removal_list:
+        text = text.replace(removable_str, '')
+    return text
 
 def get_synonyms(response):
     synonym_cluster = response.selector.css('div.xerox')
